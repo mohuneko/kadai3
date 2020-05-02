@@ -1,0 +1,30 @@
+<div class="container"><!--追加-->
+ <div class="row">
+<%= render 'layouts/sidebar' %>
+<div class="col-xs-9">
+<h2>Users</h2>
+<!--users一覧 -->
+<table class="table">
+	<thead>
+		<tr>
+			<th>image</th>
+			<th>name</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= attachment_image_tag(user, :profile_image, size:"50x50", fallback: "no-image-mini.jpg") %></td>
+			<td><%= user.name%></td>
+			<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<!--users一覧 -->
+</div>
+</div>
+</div>
+
