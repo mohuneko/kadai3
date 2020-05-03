@@ -1,5 +1,5 @@
 
- <div class="col-xs-3 sidenav">
+ <div class="col-xs-3">
 
  <div id="success_explanation">
   <p><%= flash[:message] %></p>
@@ -23,7 +23,7 @@
 <!-- User Info -->
 
 <table class="table">
-		<tr><%= attachment_image_tag(@user, :profile_image, size:'100x100', fallback: "no_image.jpg") %></tr>
+		<tr><%= attachment_image_tag @user, :profile_image, size:'100x100', fallback: "no_image.jpg", size:'100x100' %></tr>
 
 		<tr>
 			<th>name</th>
@@ -67,3 +67,4 @@
 <!-- New Book -->
 
  </div>
+

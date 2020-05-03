@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,:validatable
 
   has_many :books #1対Nの関係になるように記述
-  attachment :profile_image, destroy: false
+  attachment :profile_image
 
   #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
   validates :name, length: {maximum: 20, minimum: 2}
