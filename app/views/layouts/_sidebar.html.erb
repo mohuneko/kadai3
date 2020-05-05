@@ -18,6 +18,8 @@
   </div>
 <% end %>
 
+
+
 <h2>User info</h2>
 
 <!-- User Info -->
@@ -33,17 +35,34 @@
 		<tr>
 			<th>introduction</th>
 			<th><%= @user.introduction %></th>
+		<tr>
+			<th>follows</th>
+			<th><%= link_to "#{@user.follower.count}", followers_path(@user) %></th>
+		</tr>
+		<tr>
+			<th>followers</th>
+			<th><%= link_to "#{@user.followed.count}", followees_path(@user) %></th>
 		</tr>
 </table>
 
-<div class="row">
- <%= link_to edit_user_path(current_user) do %>
- <p class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" ></p> 
+
+<% if @user == current_user %>
+	<div class="row">
+		<%= link_to edit_user_path(current_user) do %>
+			 <p class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" ></p> 
+		<% end %>
+    </div>
+<% else %>
+	<% if current_user.following?(@user) %>
+	    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :DELETE, class:"btn btn-primary" %>
+	<% else %>
+	    <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class:"btn btn-success"%>
+	<% end %>
 <% end %>
-</div>
+
+  
 
 <!-- User Info -->
-
 
 
 <h2>New book</h2>

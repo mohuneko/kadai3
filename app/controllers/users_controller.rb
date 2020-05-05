@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@books = @user.books
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+    @user = User.find(params[:id])#追記
   end
 
   def new
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
     @user = current_user
+
   end
 
   def edit
@@ -39,12 +41,24 @@ class UsersController < ApplicationController
   	end
   end
 
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings
+    render 'show_follow'
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
+  end
+
   private
   def user_params
   	params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
-  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+  #url直接防止メソッドを自己定義してbefore_actionで発動。
    def baria_user
   	unless params[:id].to_i == current_user.id
   		redirect_to user_path(current_user)
