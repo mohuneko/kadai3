@@ -79,7 +79,7 @@ gem "refile-mini_magick"
 gem 'jquery-rails'
 
 #original
-gem 'nokogiri', '~> 1.10', '>= 1.10.9'
+gem 'nokogiri', '~> 1.11'
 gem 'bootstrap-sass', '~> 3.3.6' #bootstrap
 gem 'jquery-rails'
 # gem 'bootstrap-sass'
